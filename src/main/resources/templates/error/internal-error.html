@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Error 500</title>
+</head>
+<body>
+	<h1>Error 500</h1>
+	<div th:text="'Error: ' + ${error}"></div>
+	<div th:text="'Status: ' + ${status}"></div>
+	<div th:text="'Timestamp: ' + ${timestamp}"></div>
+	<div th:text="'Message: ' + ${message}"></div>
+	<hr>
+	<div th:text="'Trace: ' + ${trace}"></div>
+
+</body>
+</html>

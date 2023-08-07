@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/home}">Volver al Inicio</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+
+					<li class="nav-item"><a class="nav-link active" aria-current="page"
+							th:href="@{/libro/listar}">Listado de Libros</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/libro/form}">Añadir
+							nuevo Libro</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/usuario/listar}">Ir
+							a Usuarios</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<h1 class="text-primary" th:text="${titulo}"></h1>
+		<alert th:replace="~{base :: alert}"></alert>
+		<div class="alert alert-success delayed-div animate__animated animate__fadeIn" style="animation-delay: 100ms"
+			th:if="${warningDelete != null}" th:text="${warningDelete}"></div>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>id</th>
+					<th>título</th>
+					<th>autor</th>
+					<th>género</th>
+					<th>editorial</th>
+					<th>número de ejemplares</th>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="libro: ${libros}">
+					<td><a class="btn btn-primary btn-xs" th:href="@{/libro/ver/} + ${libro.id}">
+							Ver Libro
+						</a></td>
+					<td th:text="${libro.id}"></td>
+					<td th:text="${libro.titulo}"></td>
+					<td th:text="${libro.autor}"></td>
+					<td th:text="${libro.genero}"></td>
+					<td th:text="${libro.editorial}"></td>
+					<td th:text="${libro.numEjemplares}"></td>
+					<td>
+						<a class="btn btn-primary btn-xs" th:href="@{/libro/form/} + ${libro.id}">
+							Editar
+						</a>
+						<a class="btn btn-primary btn-xs" th:href="@{/libro/eliminar/} + ${libro.id}">
+							Eliminar
+						</a>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+		<nav th:replace="paginator-nav :: paginator"></nav>
+	</div>
+	<footer th:replace="~{base :: footer}"></footer>
+
+</body>
+
+</html>

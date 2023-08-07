@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title th:text="${titulo}"></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<h1 th:text="${titulo}" class="text-primary"></h1>
+
+	<form th:action="@{/libro/form}" th:object="${libro}" method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td>Título</td>
+				<td>
+					<input type="text" th:field="*{titulo}" class="form-control" />
+				</td>
+				<td th:if="${#fields.hasErrors('titulo')}">
+					<small th:errors="*{titulo}" class="form-text text-danger"></small>
+				</td>
+
+			</tr>
+			<tr>
+				<td>Autor</td>
+				<td>
+					<input type="text" th:field="*{autor}" class="form-control" />
+				</td>
+				<td th:if="${#fields.hasErrors('autor')}">
+					<small th:errors="*{autor}" class="form-text text-danger"></small>
+				</td>
+			</tr>
+			<tr>
+				<td>Género</td>
+				<td>
+					<input type="text" th:field="*{genero}" class="form-control" />
+				</td>
+				<td th:if="${#fields.hasErrors('genero')}">
+					<small th:errors="*{genero}" class="form-text text-danger"></small>
+				</td>
+			</tr>
+			<tr>
+				<td>Editorial</td>
+				<td>
+					<input type="text" th:field="*{editorial}" class="form-control" />
+				</td>
+				<td th:if="${#fields.hasErrors('editorial')}">
+					<small th:errors="*{editorial}" class="form-text text-danger"></small>
+				</td>
+			</tr>
+			<tr>
+				<td>Número de ejemplares</td>
+				<td>
+					<input type="text" th:field="*{numEjemplares}" class="form-control" />
+				</td>
+				<td th:if="${#fields.hasErrors('numEjemplares')}">
+					<small th:errors="*{numEjemplares}" class="form-text text-danger"></small>
+				</td>
+			</tr>
+			<tr>
+				<td>Foto</td>
+				<td><input type="file" name="file" class="form-control" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input type="submit" value="Guardar" class="btn btn-primary" />
+				</td>
+			</tr>
+		</table>
+
+		<input type="hidden" th:field="*{id}" />
+
+	</form>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
